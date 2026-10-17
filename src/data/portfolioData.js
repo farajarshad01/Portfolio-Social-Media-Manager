@@ -9,11 +9,12 @@ export const portfolioData = {
     avatar: "/assets/portfolio/profile.jpg",
     headline: "I turn quiet pages into busy ones.",
     intro:
-      "I help brands grow on Instagram and Facebook by combining content planning, post design, and targeted Meta ad campaigns—most recently setting up and managing end-to-end digital operations for Aimen's Dental Care.",
+      "I help brands grow on Instagram and Facebook by combining content planning, post design, and targeted Meta ad campaigns.",
     availability: "Open to new clients", // delete this line to hide the badge
   },
 
   // Pages you have handled. Add a link and its button appears automatically.
+  // current: true  -> also listed in the "Currently managing" card on the hero.
   clients: [
     {
       id: "aimens-dental-care",
@@ -21,7 +22,8 @@ export const portfolioData = {
       initials: "AD",
       image: "/assets/portfolio/aimens-icon.jpg",
       niche: "Dental clinic",
-      status: "Most recent client",
+      status: "Current client",
+      current: true,
       summary:
         "Set up and manage the clinic's digital presence end to end — social pages, Google Business Profile — and design the content that runs on them.",
       tags: ["Instagram", "Post design", "Google Business Profile"],
@@ -32,59 +34,100 @@ export const portfolioData = {
       },
       handle: "@aimensdentalcare",
     },
+    {
+      id: "sunways-solar",
+      name: "Sunways Solar",
+      initials: "SS",
+      image: "/assets/portfolio/sunways-logo.jpg",
+      niche: "Solar energy",
+      status: "Current client",
+      current: true,
+      summary: "Run the company's Instagram and Facebook pages and design the content that goes out on both.",
+      tags: ["Instagram", "Facebook", "Post design"],
+      links: {
+        instagram: "https://www.instagram.com/sunwayzenergy/",
+        facebook: "", // add the Sunways Facebook page URL here and its button appears
+      },
+      handle: "@sunwayzenergy",
+    },
     // {
     //   id: "next-client", name: "Client name", initials: "CN", niche: "Niche", status: "Previous client",
     //   summary: "What you did for them.", tags: ["Facebook"], links: { facebook: "https://..." },
     // },
   ],
 
-  // Post design gallery, pulled from your design portfolio PDFs.
-  // type: "post" (feed post), "story" (vertical story), or "reel-cover" (video/reel thumbnail).
-  // The Showcase section groups these into three rows automatically — just add items here.
+  // The four cards in the "Post design" section — one per client, each with its own popup.
+  // Every design in `posts` below points at one of these through its `client` id.
+  designClients: [
+    { id: "aimens-dental-care", name: "Aimen's Dental Care", logo: "/assets/portfolio/aimens-icon.jpg" },
+    { id: "sunways-solar", name: "Sunways Solar", logo: "/assets/portfolio/sunways-logo.jpg" },
+    { id: "ledgers-line", name: "Ledgers Line", logo: "/assets/portfolio/ledgers-line-logo.jpg" },
+    { id: "assignment-experts-hub", name: "Assignment Experts Hub", logo: "/assets/portfolio/assignment-experts-hub-logo.jpg" },
+  ],
+
+  // The designs themselves.
+  //   client:   id of one of the designClients above
+  //   type:     "post" | "story" | "reel-cover" | "print"  (shown as a label in the full view)
+  //   ratio:    width / height of the image (optional; measured automatically if left out)
+  //   featured: true to show it in its client's card preview (the first 4 featured ones are used)
   posts: [
     // Aimen's Dental Care
-    { id: "nervous-first-visit", type: "post", title: "Nervous About Your First Visit?", image: "/assets/portfolio/nervous-first-visit.jpg", tint: ["#dbe8ff", "#eef4ff"] },
-    { id: "step1-discussion", type: "post", title: "Step 1: Discussion & Medical History", image: "/assets/portfolio/step1-discussion.jpg", tint: ["#dbe8ff", "#eef4ff"] },
-    { id: "first-visit-easier", type: "post", title: "Your First Visit Made Easy", image: "/assets/portfolio/first-visit-easier.jpg", tint: ["#dbe8ff", "#eef4ff"] },
-    { id: "scaling", type: "post", title: "Professional Dental Scaling", image: "/assets/portfolio/scaling-before-after.jpg", tint: ["#dbe8ff", "#eef4ff"] },
-    { id: "six-signs", type: "post", title: "6 Signs You Need a Checkup", image: "/assets/portfolio/six-signs-checkup.jpg", tint: ["#dbe8ff", "#eef4ff"] },
-    { id: "services-list", type: "post", title: "Our Dental Services", image: "/assets/portfolio/dental-services-list.jpg", tint: ["#dbe8ff", "#eef4ff"] },
-    { id: "braces", type: "post", title: "Braces: Day 1 to 2 Months", image: "/assets/portfolio/braces-progress.jpg", tint: ["#dbe8ff", "#eef4ff"] },
-    { id: "saliva-fact", type: "post", title: "Fact of the Day: Saliva", image: "/assets/portfolio/saliva-fact.jpg", tint: ["#dbe8ff", "#eef4ff"] },
+    { id: "aimens-pamphlet", client: "aimens-dental-care", type: "print", title: "Clinic Pamphlet", image: "/assets/portfolio/aimens-pamphlet.jpg", ratio: 0.47, featured: true, tint: ["#dbe8ff", "#eef4ff"] },
+    { id: "smooth-experience", client: "aimens-dental-care", type: "post", title: "A Smooth, Comfortable Experience", image: "/assets/portfolio/smooth-comfortable-experience.jpg", ratio: 1, featured: true, tint: ["#dbe8ff", "#eef4ff"] },
+    { id: "nervous-first-visit", client: "aimens-dental-care", type: "post", title: "Nervous About Your First Visit?", image: "/assets/portfolio/nervous-first-visit.jpg", ratio: 1, featured: true, tint: ["#dbe8ff", "#eef4ff"] },
+    { id: "step1-discussion", client: "aimens-dental-care", type: "post", title: "Step 1: Discussion & Medical History", image: "/assets/portfolio/step1-discussion.jpg", ratio: 1, tint: ["#dbe8ff", "#eef4ff"] },
+    { id: "first-visit-easier", client: "aimens-dental-care", type: "post", title: "Your First Visit Made Easy", image: "/assets/portfolio/first-visit-easier.jpg", ratio: 1, tint: ["#dbe8ff", "#eef4ff"] },
+    { id: "scaling", client: "aimens-dental-care", type: "post", title: "Professional Dental Scaling", image: "/assets/portfolio/scaling-before-after.jpg", ratio: 0.717, tint: ["#dbe8ff", "#eef4ff"] },
+    { id: "six-signs", client: "aimens-dental-care", type: "post", title: "6 Signs You Need a Checkup", image: "/assets/portfolio/six-signs-checkup.jpg", ratio: 0.8, tint: ["#dbe8ff", "#eef4ff"] },
+    { id: "services-list", client: "aimens-dental-care", type: "post", title: "Our Dental Services", image: "/assets/portfolio/dental-services-list.jpg", ratio: 0.801, tint: ["#dbe8ff", "#eef4ff"] },
+    { id: "braces", client: "aimens-dental-care", type: "post", title: "Braces: Day 1 to 2 Months", image: "/assets/portfolio/braces-progress.jpg", ratio: 0.8, tint: ["#dbe8ff", "#eef4ff"] },
+    { id: "saliva-fact", client: "aimens-dental-care", type: "post", title: "Fact of the Day: Saliva", image: "/assets/portfolio/saliva-fact.jpg", ratio: 1, tint: ["#dbe8ff", "#eef4ff"] },
+    { id: "checkup-walkthrough", client: "aimens-dental-care", type: "reel-cover", title: "A Walkthrough of Your Checkup", image: "/assets/portfolio/checkup-walkthrough.jpg", ratio: 0.666, tint: ["#cfe0ff", "#eaf1ff"] },
+    { id: "dental-talks", client: "aimens-dental-care", type: "reel-cover", title: "Dental Talks with Dr. Aimen", image: "/assets/portfolio/dental-talks-cover.jpg", ratio: 0.666, featured: true, tint: ["#cfe0ff", "#eaf1ff"] },
+
+    // Sunways Solar
+    { id: "sunways-solis", client: "sunways-solar", type: "post", title: "Reliable Power With Solis Inverters", image: "/assets/portfolio/sunways-solis-inverters.jpg", ratio: 1, featured: true, tint: ["#e1efff", "#fff3dc"] },
+    { id: "sunways-auxsol", client: "sunways-solar", type: "post", title: "Auxsol Inverters", image: "/assets/portfolio/sunways-auxsol-inverters.jpg", ratio: 1, tint: ["#e1efff", "#fff3dc"] },
+    { id: "sunways-why-solar", client: "sunways-solar", type: "post", title: "Why Choose Solar Energy?", image: "/assets/portfolio/sunways-why-solar.jpg", ratio: 1, featured: true, tint: ["#e1efff", "#fff3dc"] },
+    { id: "sunways-know-before", client: "sunways-solar", type: "post", title: "Know Before You Go Solar", image: "/assets/portfolio/sunways-know-before-solar.jpg", ratio: 1, tint: ["#e1efff", "#fff3dc"] },
+    { id: "sunways-power-future", client: "sunways-solar", type: "post", title: "Power Your Future With Solar", image: "/assets/portfolio/sunways-power-your-future.jpg", ratio: 1, featured: true, tint: ["#e1efff", "#fff3dc"] },
 
     // Ledgers Line
-    { id: "bookkeeping-myths", type: "post", title: "Bookkeeping Myths, Busted", image: "/assets/portfolio/bookkeeping-myths.jpg", tint: ["#e3e8f5", "#eef1fa"] },
-    { id: "tax-labyrinth", type: "post", title: "Tax Forms Like a Labyrinth", image: "/assets/portfolio/tax-forms-labyrinth.jpg", tint: ["#e3e8f5", "#eef1fa"] },
-    { id: "decode-secrets", type: "post", title: "Decode Business Secrets", image: "/assets/portfolio/decode-business-secrets.jpg", tint: ["#e3e8f5", "#eef1fa"] },
-    { id: "secure-future", type: "post", title: "Building a Secure Financial Future", image: "/assets/portfolio/secure-financial-future.jpg", tint: ["#e3e8f5", "#eef1fa"] },
-    { id: "we-see-you", type: "post", title: "We See You", image: "/assets/portfolio/we-see-you.jpg", tint: ["#e3e8f5", "#eef1fa"] },
-    { id: "ledger-quote", type: "post", title: "The Ledger's Story", image: "/assets/portfolio/ledger-pages-quote.jpg", tint: ["#e3e8f5", "#eef1fa"] },
-    { id: "excel-basics", type: "post", title: "Excel Basics Training", image: "/assets/portfolio/excel-basics-training.jpg", tint: ["#e3e8f5", "#eef1fa"] },
-    { id: "financial-goals", type: "post", title: "Set Your Financial Goals", image: "/assets/portfolio/set-financial-goals.jpg", tint: ["#e3e8f5", "#eef1fa"] },
-    { id: "faq-cover", type: "post", title: "Bookkeeping FAQs", image: "/assets/portfolio/faq-cover.jpg", tint: ["#e3e8f5", "#eef1fa"] },
-    { id: "faq-q1", type: "post", title: "Bookkeeping vs Accounting", image: "/assets/portfolio/faq-bookkeeping-vs-accounting.jpg", tint: ["#e3e8f5", "#eef1fa"] },
-    { id: "contact-cta", type: "post", title: "Ready to Take Action?", image: "/assets/portfolio/contact-us-cta.jpg", tint: ["#e3e8f5", "#eef1fa"] },
+    { id: "bookkeeping-myths", client: "ledgers-line", type: "post", title: "Bookkeeping Myths, Busted", image: "/assets/portfolio/bookkeeping-myths.jpg", ratio: 1, featured: true, tint: ["#e3e8f5", "#eef1fa"] },
+    { id: "tax-labyrinth", client: "ledgers-line", type: "post", title: "Tax Forms Like a Labyrinth", image: "/assets/portfolio/tax-forms-labyrinth.jpg", ratio: 1, tint: ["#e3e8f5", "#eef1fa"] },
+    { id: "decode-secrets", client: "ledgers-line", type: "post", title: "Decode Business Secrets", image: "/assets/portfolio/decode-business-secrets.jpg", ratio: 1, tint: ["#e3e8f5", "#eef1fa"] },
+    { id: "secure-future", client: "ledgers-line", type: "post", title: "Building a Secure Financial Future", image: "/assets/portfolio/secure-financial-future.jpg", ratio: 1, tint: ["#e3e8f5", "#eef1fa"] },
+    { id: "we-see-you", client: "ledgers-line", type: "post", title: "We See You", image: "/assets/portfolio/we-see-you.jpg", ratio: 1, tint: ["#e3e8f5", "#eef1fa"] },
+    { id: "ledger-quote", client: "ledgers-line", type: "post", title: "The Ledger's Story", image: "/assets/portfolio/ledger-pages-quote.jpg", ratio: 1, featured: true, tint: ["#e3e8f5", "#eef1fa"] },
+    { id: "excel-basics", client: "ledgers-line", type: "post", title: "Excel Basics Training", image: "/assets/portfolio/excel-basics-training.jpg", ratio: 1, tint: ["#e3e8f5", "#eef1fa"] },
+    { id: "financial-goals", client: "ledgers-line", type: "post", title: "Set Your Financial Goals", image: "/assets/portfolio/set-financial-goals.jpg", ratio: 1, tint: ["#e3e8f5", "#eef1fa"] },
+    { id: "faq-cover", client: "ledgers-line", type: "post", title: "Bookkeeping FAQs", image: "/assets/portfolio/faq-cover.jpg", ratio: 1, featured: true, tint: ["#e3e8f5", "#eef1fa"] },
+    { id: "faq-q1", client: "ledgers-line", type: "post", title: "Bookkeeping vs Accounting", image: "/assets/portfolio/faq-bookkeeping-vs-accounting.jpg", ratio: 1, tint: ["#e3e8f5", "#eef1fa"] },
+    { id: "contact-cta", client: "ledgers-line", type: "post", title: "Ready to Take Action?", image: "/assets/portfolio/contact-us-cta.jpg", ratio: 1, tint: ["#e3e8f5", "#eef1fa"] },
 
     // Assignment Experts Hub
-    { id: "struggling", type: "post", title: "Struggling With an Assignment?", image: "/assets/portfolio/struggling-with-assignment.jpg", tint: ["#dce6f5", "#e9eef7"] },
-    { id: "why-risk-it", type: "post", title: "Why Risk It?", image: "/assets/portfolio/why-risk-it.jpg", tint: ["#dce6f5", "#e9eef7"] },
-    { id: "double-grades", type: "post", title: "Double Your Grades", image: "/assets/portfolio/double-your-grades.jpg", tint: ["#dce6f5", "#e9eef7"] },
-    { id: "dream-big", type: "post", title: "Dream Big, Work Hard", image: "/assets/portfolio/dream-big-quote.jpg", tint: ["#dce6f5", "#e9eef7"] },
-    { id: "quality-guaranteed", type: "post", title: "Quality Guaranteed", image: "/assets/portfolio/quality-guaranteed.jpg", tint: ["#dce6f5", "#e9eef7"] },
-    { id: "why-choose-us", type: "post", title: "Why Choose Us", image: "/assets/portfolio/why-choose-us.jpg", tint: ["#dce6f5", "#e9eef7"] },
-
-    // Reel covers
-    { id: "checkup-walkthrough", type: "reel-cover", title: "A Walkthrough of Your Checkup", image: "/assets/portfolio/checkup-walkthrough.jpg", tint: ["#cfe0ff", "#eaf1ff"] },
-    { id: "dental-talks", type: "reel-cover", title: "Dental Talks with Dr. Aimen", image: "/assets/portfolio/dental-talks-cover.jpg", tint: ["#cfe0ff", "#eaf1ff"] },
-
-    // Stories
-    { id: "services-menu", type: "story", title: "Our Services", image: "/assets/portfolio/our-services-menu.jpg", tint: ["#cfe0ff", "#eaf1ff"] },
-    { id: "three-steps", type: "story", title: "3 Simple Steps", image: "/assets/portfolio/three-simple-steps.jpg", tint: ["#cfe0ff", "#eaf1ff"] },
-    { id: "book-services", type: "story", title: "Book Our Services", image: "/assets/portfolio/book-services-contact.jpg", tint: ["#cfe0ff", "#eaf1ff"] },
+    { id: "struggling", client: "assignment-experts-hub", type: "post", title: "Struggling With an Assignment?", image: "/assets/portfolio/struggling-with-assignment.jpg", ratio: 1, featured: true, tint: ["#dce6f5", "#e9eef7"] },
+    { id: "why-risk-it", client: "assignment-experts-hub", type: "post", title: "Why Risk It?", image: "/assets/portfolio/why-risk-it.jpg", ratio: 1, tint: ["#dce6f5", "#e9eef7"] },
+    { id: "double-grades", client: "assignment-experts-hub", type: "post", title: "Double Your Grades", image: "/assets/portfolio/double-your-grades.jpg", ratio: 1, tint: ["#dce6f5", "#e9eef7"] },
+    { id: "dream-big", client: "assignment-experts-hub", type: "post", title: "Dream Big, Work Hard", image: "/assets/portfolio/dream-big-quote.jpg", ratio: 1, tint: ["#dce6f5", "#e9eef7"] },
+    { id: "quality-guaranteed", client: "assignment-experts-hub", type: "post", title: "Quality Guaranteed", image: "/assets/portfolio/quality-guaranteed.jpg", ratio: 1, tint: ["#dce6f5", "#e9eef7"] },
+    { id: "why-choose-us", client: "assignment-experts-hub", type: "post", title: "Why Choose Us", image: "/assets/portfolio/why-choose-us.jpg", ratio: 1, featured: true, tint: ["#dce6f5", "#e9eef7"] },
+    { id: "services-menu", client: "assignment-experts-hub", type: "story", title: "Our Services", image: "/assets/portfolio/our-services-menu.jpg", ratio: 0.562, featured: true, tint: ["#cfe0ff", "#eaf1ff"] },
+    { id: "three-steps", client: "assignment-experts-hub", type: "story", title: "3 Simple Steps", image: "/assets/portfolio/three-simple-steps.jpg", ratio: 0.562, featured: true, tint: ["#cfe0ff", "#eaf1ff"] },
+    { id: "book-services", client: "assignment-experts-hub", type: "story", title: "Book Our Services", image: "/assets/portfolio/book-services-contact.jpg", ratio: 0.562, tint: ["#cfe0ff", "#eaf1ff"] },
   ],
 
   // Most recent first — matches the order on your resume.
   experience: [
+    {
+      role: "Social Media Manager",
+      org: "Sunways Solar",
+      period: "Oct 2026 – Present",
+      points: [
+        "Manage the brand's Instagram and Facebook pages.",
+        "Design the content that goes out across both platforms.",
+      ],
+    },
     {
       role: "Social Media Manager",
       org: "Aimen's Dental Care",

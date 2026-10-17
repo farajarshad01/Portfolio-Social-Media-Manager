@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import { AvatarRing, InstagramIcon, Magnetic, spotlight, spring } from "./ui";
+import { AvatarRing, Magnetic, spotlight, spring } from "./ui";
 import { portfolioData } from "../data/portfolioData";
 
 const container = { hidden: {}, show: { transition: { staggerChildren: 0.09, delayChildren: 0.15 } } };
@@ -8,7 +8,7 @@ const line = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transiti
 
 export default function Hero() {
   const { profile, clients } = portfolioData;
-  const featured = clients[0];
+  const current = clients.filter((c) => c.current);
 
   return (
     <section id="hero" className="relative flex min-h-[92vh] items-center pb-20 pt-28">
@@ -37,18 +37,10 @@ export default function Hero() {
 
           <motion.div variants={line} className="mt-9 flex flex-wrap items-center gap-3">
             <Magnetic>
-              <a href="#showcase" className="btn btn-glass">
+              <a href="#showcase" className="btn btn-fb">
                 See the work
               </a>
             </Magnetic>
-            {featured?.links?.instagram && (
-              <Magnetic>
-                <a href={featured.links.instagram} target="_blank" rel="noopener noreferrer" className="btn btn-ig">
-                  <InstagramIcon className="h-4 w-4" />
-                  {featured.handle}
-                </a>
-              </Magnetic>
-            )}
           </motion.div>
         </motion.div>
 
@@ -71,11 +63,17 @@ export default function Hero() {
               <p className="text-sm text-muted">{profile.role}</p>
             </div>
           </div>
-          {featured && (
+          {current.length > 0 && (
             <div className="mt-6 rounded-2xl bg-white/60 p-4">
               <p className="text-xs font-medium uppercase tracking-wide text-muted">Currently managing</p>
-              <p className="mt-1 font-display text-lg font-semibold">{featured.name}</p>
-              <p className="text-sm text-muted">{featured.niche}</p>
+              <ul className="mt-2 divide-y divide-ink/10">
+                {current.map((c) => (
+                  <li key={c.id} className="py-2.5 first:pt-0 last:pb-0">
+                    <p className="font-display text-lg font-semibold">{c.name}</p>
+                    <p className="text-sm text-muted">{c.niche}</p>
+                  </li>
+                ))}
+              </ul>
             </div>
           )}
         </motion.div>
